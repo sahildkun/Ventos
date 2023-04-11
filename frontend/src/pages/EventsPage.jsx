@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
+import EventsList from '../components/EventsList'
 
 const DUMMY_EVENTS = [ 
   {
@@ -12,7 +12,7 @@ const DUMMY_EVENTS = [
     title: 'last event'
   }
  ]
-const EventsPage = () => {
+const Event = () => {
   return (
     <>
     {
@@ -25,4 +25,4 @@ const EventsPage = () => {
   )
 }
 
-export default EventsPage
+export default Event

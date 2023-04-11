@@ -9,14 +9,14 @@ function MainNavigation() {
           <li>
             <NavLink 
             to={'/'}
-            className={({isActive}) => isActive ? 'text-red-400  font-semibold text-lg' : "" }
+            className={({isActive}) => isActive ? 'text-red-400  ' : " hover:text-red-400" }
             end={true}
             >Home</NavLink>
           </li>
           <li>
             <NavLink 
             to={'/events'}
-            className={({isActive}) => isActive ? 'text-red-400 font-semibold text-xl' : undefined }
+            className={({isActive}) => isActive ? 'text-red-400  ' :'hover:text-red-400' }
             >Events</NavLink>
           </li>
         </ul>
