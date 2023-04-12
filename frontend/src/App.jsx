@@ -7,8 +7,9 @@ import Homepage from './pages/Homepage';
 import NewEvent from './pages/NewEvent';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/Error';
-import { action as newEventAction } from './pages/NewEvent';
-
+import { action as manipulateEvent } from './components/EventForm';
+import { action as deleteEventAction } from './pages/EventDetailPage';
+import { loader as allEventsLoader} from './pages/Events';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -20,22 +21,7 @@ const router = createBrowserRouter([
       element: <EventsLayout/>,
       children: [  
         {path:'' ,  element:<EventsPage/>,
-        loader: async() => {
-          const response = await fetch('http://localhost:8080/events');
-  
-          if (!response.ok) {
-            // throw new Response(JSON.stringify({message: 'Could not find events'}), {status: 500})
-           return json(
-            {message: 'Could not find events'},
-            {status: 500}
-            )
-          } else {
-            // const resData = await response.json();
-            // console.log(resData.events);
-            //loader also directly returns response instead of the promise that resolves a response and it could be  easily utilized thankfully to the useloaderData hook of react router
-            return response;
-          }
-        }
+        loader:  allEventsLoader,
       },
         {
         path: ':id' , 
@@ -46,16 +32,18 @@ const router = createBrowserRouter([
             index: true,
             element: <EventDetailPage/>,
             loader: eventLoader,
+            action: deleteEventAction,
           },
           {
             path: 'edit' , 
-            element: <EditEvent/>
+            element: <EditEvent/>,
+            action: manipulateEvent,
           }
         ]
        },
         {path: 'new' ,
          element: <NewEvent/>,
-         action: newEventAction,
+         action: manipulateEvent,
       },
         
       ]

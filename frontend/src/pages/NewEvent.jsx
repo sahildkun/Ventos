@@ -3,7 +3,7 @@ import { json, redirect } from 'react-router-dom'
 import EventForm from '../components/EventForm'
 const NewEvent = () => {
   return (
-    <EventForm/>
+    <EventForm method='post'/>
   )
 }
 
@@ -28,7 +28,7 @@ export const action = async ({request,params}) => {
     },
     body: JSON.stringify(eventData)
   })
-  console.log(response);
+  // console.log(response);
   if(!response.ok){
     throw json({
       message: 'Could not save event'
